@@ -22,7 +22,8 @@ end
 
 #display a survey and its questions
 get '/surveys/:survey_id' do
-
+  @survey = Survey.find(params[:survey_id])
+  erb :survey #need to show the survey - Create survey.erb
 end
 
 post 'questions' do
