@@ -30,5 +30,10 @@ get '/logout' do
 end
 
 get "/:user_name" do
-  p "we are at your home page"
+  @user = User.find_by(user_name: params[:user_name])
+  if session[:user_id] == @user.id
+    #enables partial that allows you to create surverys
+  else
+    #lets person see all of that user page's  surevys and take them
+  end
 end
