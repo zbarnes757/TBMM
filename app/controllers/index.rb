@@ -11,7 +11,7 @@ end
 post 'surveys' do
   # session for later
   # create survey based on params
-  # @survey = Survey.create(name:params[:name])
+  # @survey = Survey.create(title:params[:title])
   # maybe validations?
   redirect '/'
 end
