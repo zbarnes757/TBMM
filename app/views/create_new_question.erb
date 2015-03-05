@@ -2,6 +2,7 @@
 
 <form action='/questions' method='post'>
   <label for="content">Question to ask</label>
+  <input type="hidden" name="survey_id" value="<%= @survey.id %>" >
   <input type="text" name="content" placeholder="What is your question?">
   <input type="submit" value="Submit">
 </form>

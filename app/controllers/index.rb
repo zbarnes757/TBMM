@@ -8,15 +8,17 @@ get '/surveys/new' do
   erb :create_new_survey
 end
 
-post 'surveys' do
+post '/surveys' do
   # session for later
   # create survey based on params
-  Survey.create(title: params[:title])
-  redirect '/'
+  # redirecting user to the new survey page instead to create questions
+  survey = Survey.create(title: params[:title])
+  redirect "/surveys/#{survey.id}/question_new"
 end
 
-get '/surveys/:survey_id/new' do
-  # sessions for later
+# for creating new questions
+get '/surveys/:survey_id/question_new' do
+  @survey = Survey.find(params[:survey_id])
   erb :create_new_question # created not sure if works
 end
 
@@ -26,10 +28,13 @@ get '/surveys/:survey_id' do
   erb :survey #need to show the survey - Create survey.erb
 end
 
-post 'questions' do
+post '/questions' do
   # session for later
   # create survey based on params
-  question = Question.create(content: params[:content])
-  redirect '/surveys/??'
+  Question.create(
+    content: params[:content],
+    survey_id: params[:survey_id],
+    )
+  redirect "/surveys/#{params[:survey_id]}"
   # redirecting to the survey page but not sure how to get the corresponding survey based on the question
 end
