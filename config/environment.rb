@@ -11,10 +11,11 @@ require 'hirb'
 
 require 'uri'
 require 'pathname'
-
+require 'bcrypt'
 require 'pg'
 require 'active_record'
 require 'logger'
+require 'rack-flash'
 
 require 'sinatra'
 require "sinatra/reloader" if development?
@@ -33,7 +34,7 @@ configure do
   # See: http://www.sinatrarb.com/faq.html#sessions
   enable :sessions
   set :session_secret, ENV['SESSION_SECRET'] || 'this is a secret shhhhh'
-
+  use Rack::Flash
   # Set the views to
   set :views, File.join(Sinatra::Application.root, "app", "views")
   Hirb.enable
