@@ -38,7 +38,7 @@ post '/questions' do
     )
   redirect "/surveys/#{params[:survey_id]}"
   # redirecting to the survey page but not sure how to get the corresponding survey based on the question
-
+end
 
 post "/signup" do
   @user = User.new(params)
@@ -74,5 +74,4 @@ get "/:user_name" do
   else
     #lets person see all of that user page's  surevys and take them
   end
-
 end

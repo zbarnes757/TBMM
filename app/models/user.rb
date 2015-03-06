@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   validates :user_name, presence: true, uniqueness: true
   validates :password_hash, presence: true
+  has_many :surveys
 
 
   include BCrypt
