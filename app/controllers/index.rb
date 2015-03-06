@@ -13,7 +13,10 @@ post '/surveys' do
   # session for later
   # create survey based on params
   # redirecting user to the new survey page instead to create questions
-  survey = Survey.create(title: params[:title])
+  survey = Survey.create(
+    title: params[:title],
+    user_id: current_user.id,
+    )
   redirect "/surveys/#{survey.id}/question_new"
 end
 
