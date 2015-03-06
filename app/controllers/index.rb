@@ -44,7 +44,7 @@ post "/signup" do
   @user = User.new(params)
   if @user.save
     session[:user_id] = @user.id
-    redirect "/#{@user.user_name}"
+    redirect "/user/#{@user.user_name}"
   else
     flash[:error] = "Username already taken"
     redirect "/"
@@ -55,7 +55,7 @@ post "/login" do
   @user = User.find_by(user_name: params[:user_name])
   if @user && @user.authenticate(params[:password])
     session[:user_id] = @user.id
-    redirect "/#{@user.user_name}"
+    redirect "/user/#{@user.user_name}"
   else
     flash[:error] = "User name or password incorrect"
     redirect "/"
@@ -67,11 +67,16 @@ get '/logout' do
   redirect '/'
 end
 
-get "/:user_name" do
+get '/users' do
+  #shows list of all survey creators
+end
+
+get "/user/:user_name" do
   @user = User.find_by(user_name: params[:user_name])
   if session[:user_id] == @user.id
-    #enables partial that allows you to create surverys
+    #create survey link and edit links
+    erb :profile
   else
-    #lets person see all of that user page's  surevys and take them
+    #take survey links
   end
 end

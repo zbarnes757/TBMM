@@ -1,0 +1,14 @@
+<!-- #nav bar w log out and create survey button
+#user name as header
+#list of user's created surveys. -->
+
+
+<div>
+  <h1><%= @user.name %></h1>
+  <div><%= @user.user_name %></div>
+</div>
+
+<div><% @user.surveys.each do |survey| %>
+  <div><a href="/surveys/<%=survey.id%>"><%= survey.title %></a></div>
+  <% end %>
+</div>
