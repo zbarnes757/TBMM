@@ -1,0 +1,8 @@
+<!-- Will display survey title and questions -->
+<!-- link to create a new question -->
+
+<h1><%= @survey.title %></h1>
+
+<% @survey.questions.each do |question| %>
+  <p><%=question.content%></p>
+<% end %>

@@ -1,0 +1,24 @@
+<!-- #nav bar w log out and create survey button
+#user name as header
+#list of user's created surveys. -->
+
+<% if current_user %>
+  <a href='/surveys/new'>Create New Survey</a>
+<% end %>
+<div>
+  <h1><%= @user.name %></h1>
+  <div><%= @user.user_name %></div>
+</div>
+
+<div><% @user.surveys.each do |survey| %>
+  <div>
+    <a href="/surveys/<%=survey.id%>"><%= survey.title %></a>
+    <% if current_user == survey.user %>
+    <a href="/surveys/edit/<%=survey.id%>">Edit Survey</a>
+    <a href="/surveys/delete/<%=survey.id%>">Delete Survey</a>
+    <% else %>
+    <a href="/surveys/take/<%=survey.id%>">Take Survey</a>
+    <% end %>
+  </div>
+  <% end %>
+</div>
