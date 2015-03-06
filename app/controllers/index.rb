@@ -17,6 +17,18 @@ post '/surveys' do
   redirect "/surveys/#{survey.id}/question_new"
 end
 
+get '/surveys/edit/:survey_id' do
+ "editing now"
+end
+
+get '/surveys/take/:survey_id' do
+ "taking #{params[:survey_id]}"
+end
+
+get '/surveys/delete/:survey_id' do
+ "delete #{params[:survey_id]}"
+end
+
 # for creating new questions
 get '/surveys/:survey_id/question_new' do
   @survey = Survey.find(params[:survey_id])
@@ -44,7 +56,7 @@ post "/signup" do
   @user = User.new(params)
   if @user.save
     session[:user_id] = @user.id
-    redirect "/#{@user.user_name}"
+    redirect "/user/#{@user.user_name}"
   else
     flash[:error] = "Username already taken"
     redirect "/"
@@ -55,7 +67,7 @@ post "/login" do
   @user = User.find_by(user_name: params[:user_name])
   if @user && @user.authenticate(params[:password])
     session[:user_id] = @user.id
-    redirect "/#{@user.user_name}"
+    redirect "/user/#{@user.user_name}"
   else
     flash[:error] = "User name or password incorrect"
     redirect "/"
@@ -67,11 +79,12 @@ get '/logout' do
   redirect '/'
 end
 
-get "/:user_name" do
+get '/users' do
+  #shows list of all survey creators
+end
+
+
+get "/user/:user_name" do
   @user = User.find_by(user_name: params[:user_name])
-  if session[:user_id] == @user.id
-    #enables partial that allows you to create surverys
-  else
-    #lets person see all of that user page's  surevys and take them
-  end
+  erb :profile
 end
