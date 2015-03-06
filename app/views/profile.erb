@@ -2,7 +2,9 @@
 #user name as header
 #list of user's created surveys. -->
 
-
+<% if current_user %>
+  <a href='/surveys/new'>Create New Survey</a>
+<% end %>
 <div>
   <h1><%= @user.name %></h1>
   <div><%= @user.user_name %></div>
