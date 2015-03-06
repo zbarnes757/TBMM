@@ -17,6 +17,18 @@ post '/surveys' do
   redirect "/surveys/#{survey.id}/question_new"
 end
 
+get '/surveys/edit/:survey_id' do
+ "editing now"
+end
+
+get '/surveys/take/:survey_id' do
+ "taking #{params[:survey_id]}"
+end
+
+get '/surveys/delete/:survey_id' do
+ "delete #{params[:survey_id]}"
+end
+
 # for creating new questions
 get '/surveys/:survey_id/question_new' do
   @survey = Survey.find(params[:survey_id])
@@ -71,12 +83,8 @@ get '/users' do
   #shows list of all survey creators
 end
 
+
 get "/user/:user_name" do
   @user = User.find_by(user_name: params[:user_name])
-  if session[:user_id] == @user.id
-    #create survey link and edit links
-    erb :profile
-  else
-    #take survey links
-  end
+  erb :profile
 end
