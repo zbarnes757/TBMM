@@ -7,6 +7,7 @@ require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
 # Require gems we care about
 require 'rubygems'
+require 'hirb'
 
 require 'uri'
 require 'pathname'
@@ -36,6 +37,7 @@ configure do
   use Rack::Flash
   # Set the views to
   set :views, File.join(Sinatra::Application.root, "app", "views")
+  Hirb.enable
 end
 
 # Set up the controllers and helpers
