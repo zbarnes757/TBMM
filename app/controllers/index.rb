@@ -1,18 +1,13 @@
 
 get '/' do
-  # session for late
-  erb :index # do index.erb
+  erb :index
 end
 
 get '/surveys/new' do
-  # session for later
   erb :create_new_survey
 end
 
 post '/surveys' do
-  # session for later
-  # create survey based on params
-  # redirecting user to the new survey page instead to create questions
   survey = Survey.create(
     title: params[:title],
     user_id: current_user.id,
@@ -23,7 +18,7 @@ end
 # for creating new questions
 get '/surveys/:survey_id/question_new' do
   @survey = Survey.find(params[:survey_id])
-  erb :create_new_question # created not sure if works
+  erb :create_new_question
 end
 
 #display a survey and its questions
@@ -33,8 +28,6 @@ get '/surveys/:survey_id' do
 end
 
 post '/questions' do
-  # session for later
-  # create survey based on params
   Question.create(
     content: params[:content],
     survey_id: params[:survey_id],
