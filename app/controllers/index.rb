@@ -11,23 +11,25 @@ post '/user/create' do
 	if user.save!
 		session[:user_id] = user.id
 		content_type :json
-		status 200
 		{name: user.name}.to_json
 	else
-		errors = user.errors.full_messages
-		content_type :json
-		{errors: errors}.to_json
+		status 400
+		# errors = user.errors.full_messages
+		# content_type :json
+		# erb :index
 	end
 end
 
 post '/login' do
-  user = User.find_by(username: params[:username])
+  user = User.find_by(email: params[:email])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
-		# redirect "/user/#{user.id}"
+		content_type :json
+		{name: user.name}.to_json
   else
-    flash[:errors] = "Try again"
-    redirect '/'
+  	status 401
+    # flash[:errors] = "Try again"
+    # redirect '/'
   end
 end
 
