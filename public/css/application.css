@@ -1,3 +1,20 @@
+. {
+	font-family: 'Playfair Display SC', serif;
+}
+
 body {
 	background-image: url(../purty_wood.png);
+}
+
+.welcome {
+	height: 150px;
+	width: 550px;
+	margin: auto;
+	margin-top: 7%;
+	text-align: center;
+}
+
+.welcome h1, .welcome h2 {
+	font-weight: 900;
+	font-style: bold;
 }

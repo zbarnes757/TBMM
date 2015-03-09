@@ -1,5 +1,9 @@
 get '/' do
-	erb :index
+	# if logged_in?
+	# 	redirect '/'
+	# else
+		erb :index
+	# end
 end
 
 post '/user/create' do
