@@ -1,7 +1,25 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+  $('#sign-up-form').submit( userSignUp )
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
 });
+
+function userSignUp (event) {
+	event.preventDefault();
+	var formData = $(this).serialize();
+	var url = $(this).attr('action');
+	$('.form-control').val('');
+	var ajaxResponse = $.ajax({
+		url: url,
+		type: 'post',
+		data: formData,
+	});
+
+	ajaxResponse.done(function (serverData) {
+		console.log(serverData);
+	});
+
+	ajaxResponse.fail(function (serverData) {
+		console.log('Womp, womp. You suck. Try again.');
+		console.log(serverData);
+	});
+}

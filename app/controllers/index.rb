@@ -10,10 +10,13 @@ post '/user/create' do
 	user = User.new(params)
 	if user.save!
 		session[:user_id] = user.id
-		# redirect "/user/#{user.id}"
+		content_type :json
+		status 200
+		{name: user.name}.to_json
 	else
-		session[:errors] = user.errors.full_messages
-		redirect '/'
+		errors = user.errors.full_messages
+		content_type :json
+		{errors: errors}.to_json
 	end
 end
 

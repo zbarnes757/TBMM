@@ -8,10 +8,15 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>The Beard Maketh the Man</title>
 </head>
 <body>
   <div class="container-fluid">
+    <% if flash[:errors] != nil %>
+  		<% flash[:errors].each do |error| %>
+  			<%= error %>
+  		<% end %>
+  	<% end %>
     <%= yield %>
   </div>
 </body>
