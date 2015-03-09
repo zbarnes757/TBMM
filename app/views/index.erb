@@ -1,5 +1,5 @@
 <div class="welcome">
-	<h1>Welcome, Bearded Ones!</h1>
+	<h1>Welcome, <span class="name">Bearded One!</span></h1>
 	<h2>Please Login to Join Us.</h2>
 </div>
 
@@ -7,11 +7,13 @@
   <div class="col-md-3" >
   	<img src="beard-slogan1.jpg" class="img-responsive">
   </div>
-  <div class="col-md-3">
-    <%= erb :'users/_sign_up' %>
-  </div>
-  <div class="col-md-3">
-    <%= erb :'users/_login' %>
+  <div class="main-area">
+	  <div class="col-md-3">
+	    <%= erb :'users/_sign_up' %>
+	  </div>
+	  <div class="col-md-3">
+	    <%= erb :'users/_login' %>
+	  </div>
   </div>
   <div class="col-md-3" >
   	<img src="beard-slogan2.jpg" class="img-responsive">

@@ -15,7 +15,9 @@ function userSignUp (event) {
 	});
 
 	ajaxResponse.done(function (serverData) {
-		console.log(serverData);
+		console.log(serverData.name);
+		modifyWelcome(serverData.name);
+		setupMainArea();
 	});
 
 	ajaxResponse.fail(function (serverData) {
@@ -37,10 +39,21 @@ function userLogin (event) {
 	});
 
 	ajaxResponse.done(function (serverData) {
-		console.log(serverData);
-	});
+		console.log(serverData.name);
+		modifyWelcome(serverData.name);
+		setupMainArea();
+});
 
 	ajaxResponse.fail(function (serverData) {
 		alert('Womp, womp. You suck. Try again.');
 	});
+}
+
+function modifyWelcome (name) {
+	$('.welcome h1 .name').text(name);
+	$('.welcome h2').hide();
+}
+
+function setupMainArea () {
+	$('.main-area').empty().append('<div class="col-md-6"></div>');
 }
