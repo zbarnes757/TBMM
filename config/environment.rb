@@ -16,6 +16,8 @@ require 'active_record'
 require 'logger'
 
 require 'sinatra'
+require 'rack-flash'
+use Rack::Flash
 
 if development?
 	require 'dotenv'
