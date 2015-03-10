@@ -18,3 +18,8 @@ body {
 	font-weight: 900;
 	font-style: bold;
 }
+
+.description {
+	max-height: 13em;
+	overflow: auto;
+}

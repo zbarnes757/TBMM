@@ -1,7 +1,5 @@
 
 $(document).ready(function() {
-	var source   = $("#product-template").html();
-	var template = Handlebars.compile(source);
   $('#sign-up-form').submit( userSignUp );
   $('#login-form').submit( userLogin );
   $('.welcome').on('click', '.btn', findProducts )
@@ -80,19 +78,36 @@ function findProducts (event) {
 		var api_key = serverData;
 		etsyURL = "https://openapi.etsy.com/v2/listings/active.js?keywords="+
 		                terms+"&limit=12&includes=Images:1&api_key="+api_key;
-
+		$('.main-area .col-md-6').empty();
 		$.ajax({
             url: etsyURL,
             dataType: 'jsonp',
             success: function(data) {
                 if (data.ok) {
-                  console.log(data);
+                	$.each(data.results, function (productIndex) {
+                		$('.main-area .col-md-6').append(createItems(data.results[productIndex]));
+                	})
+                  console.log(data.results);
                 } else {    
                   alert(data.error);
                 }
             }
         });
 		  })
+}
+
+function createItems (productObject) {
+	var context = {
+		image_source: productObject.Images[0].url_fullxfull,
+		description: productObject.description,
+		title: productObject.title,
+		price: productObject.price,
+		url: productObject.url
+	}
+	var source   = $("#product-template").html();
+	var template = Handlebars.compile(source);
+	var html    = template(context);
+	return html;
 }
 
 
