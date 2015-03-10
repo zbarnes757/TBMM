@@ -37,3 +37,12 @@ get '/logout' do
 	session[:user_id] = nil
 	redirect '/'
 end
+
+get '/etsy_key' do
+	etsy_key = ENV['ETSY_KEY']
+	content_type :json
+	etsy_key.to_json
+end
+
+
+

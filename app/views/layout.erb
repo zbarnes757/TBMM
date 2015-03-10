@@ -4,8 +4,8 @@
 <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC:700,900,400' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/css/bootstrap.css">
   <link rel="stylesheet" href="/css/application.css">
-
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/js/handlebars-v3.0.0.js"></script>
   <script src="/js/application.js"></script>
 
   <title>The Beard Maketh the Man</title>
@@ -19,5 +19,18 @@
   	<% end %>
     <%= yield %>
   </div>
+
+  <script id="product-template" type="text/x-handlebars-template" >
+  	<div class="col-md-4">
+      <div class="thumbnail">
+        <img src={{image_source}} alt={{description}}>
+        <div class="caption">
+          <h3>{{title}}</h3>
+          <p>{{description}}</p>
+          <p>${{price}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
 </body>
 </html>
