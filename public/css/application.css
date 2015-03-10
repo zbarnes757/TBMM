@@ -14,7 +14,7 @@ body {
 	text-align: center;
 }
 
-.welcome h1, .welcome h2 {
+.welcome-header {
 	font-weight: 900;
 	font-style: bold;
 }

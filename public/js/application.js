@@ -49,7 +49,7 @@ function userLogin (event) {
 }
 
 function modifyWelcome (name) {
-	$('.welcome h1 .name').text(name);
+	$('.welcome-name').text(name);
 	$('.welcome h2').hide();
 }
 
