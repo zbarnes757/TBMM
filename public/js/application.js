@@ -17,14 +17,12 @@ function userSignUp (event) {
 	});
 
 	ajaxResponse.done(function (serverData) {
-		console.log(serverData.name);
 		modifyWelcome(serverData.name);
 		setupMainArea();
 	});
 
 	ajaxResponse.fail(function (serverData) {
-		console.log('Womp, womp. You suck. Try again.');
-		console.log(serverData);
+		alert('Womp, womp. You suck. Try again.');
 	});
 }
 
@@ -41,7 +39,6 @@ function userLogin (event) {
 	});
 
 	ajaxResponse.done(function (serverData) {
-		console.log(serverData.name);
 		modifyWelcome(serverData.name);
 		setupMainArea();
 });
@@ -72,6 +69,7 @@ function findProducts (event) {
 	var ajaxResponse = $.ajax({
 		url: "/etsy_key",
 		type: 'get',
+		data: {terms: terms},
 	});
 
 	ajaxResponse.done(function (serverData) {
@@ -102,7 +100,7 @@ function createItems (productObject) {
 		description: productObject.description,
 		title: productObject.title,
 		price: productObject.price,
-		url: productObject.url
+		url: productObject.url,
 	}
 	var source   = $("#product-template").html();
 	var template = Handlebars.compile(source);
