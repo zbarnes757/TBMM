@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include BCrypt
 
+  has_many :items
+
   validates :email, uniqueness: true
   validates :password_hash, :email, :name, presence:true
   validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
