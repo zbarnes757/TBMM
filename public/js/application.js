@@ -1,72 +1,12 @@
 
 $(document).ready(function() {
-  // $('#sign-up-form').submit( userSignUp );
-  // $('#login-form').submit( userLogin );
   $('.welcome').on('click', '.product-button', findProducts )
   $('.welcome').on('click', '.items-button', getUsersItems )
   $('.main-area').on('click', '.add-item', addItemToUser )
   $('.main-area').on('click', '.remove-item', deleteItem )
 });
 
-// function userSignUp (event) {
-// 	event.preventDefault();
-// 	var formData = $(this).serialize();
-// 	var url = $(this).attr('action');
-// 	$('.form-control').val('');
-// 	var ajaxResponse = $.ajax({
-// 		url: url,
-// 		type: 'post',
-// 		data: formData,
-// 	});
-
-// 	ajaxResponse.done(function (serverData) {
-// 		modifyWelcome(serverData.name);
-// 		setupMainArea();
-// 	});
-
-// 	ajaxResponse.fail(function (serverData) {
-// 		alert('Womp, womp. You suck. Try again.');
-// 	});
-// }
-
-
-// function userLogin (event) {
-// 	event.preventDefault();
-// 	var formData = $(this).serialize();
-// 	var url = $(this).attr('action');
-// 	$('.form-control').val('');
-// 	var ajaxResponse = $.ajax({
-// 		url: url,
-// 		type: 'post',
-// 		data: formData,
-// 	});
-
-// 	ajaxResponse.done(function (serverData) {
-// 		modifyWelcome(serverData.name);
-// 		// setupMainArea();
-// });
-
-// 	ajaxResponse.fail(function (serverData) {
-// 		alert('Womp, womp. You suck. Try again.');
-// 	});
-// }
-
-function modifyWelcome (name) {
-	$('.welcome-name').text(name);
-	$('.welcome h2').hide();
-}
-
-// function setupMainArea () {
-// 	$('.main-area').empty().append("<div class='col-md-6'></div>");
-// 	$('.welcome').append("<button class='btn btn-info welcome-button' id='safety-razors'>Safety Razors</button>");
-// 	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-brushes'>Brushes</button>");
-// 	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-cream'>Creams</button>");
-// 	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-kits'>Shaving Kits</button>");
-// 	$('.welcome').append("<button class='btn btn-info welcome-button' id='after-shave-balm'>After Shaves</button>");
-// 	$('.welcome').append("<button class='btn btn-info items-button' id='usersItems'>Your Saved Items</button>");
-// }
-
-
+// Returns Items from Etsy and adds them to the main area
 function findProducts (event) {
 	event.preventDefault();
 	var terms = $(this).attr('id');
@@ -97,6 +37,7 @@ function findProducts (event) {
 		  })
 }
 
+// Creates the templates for each product
 function createItems (productObject, productIndex) {
 	var context = {
 		id: productIndex,
@@ -127,7 +68,7 @@ function createUserItems (productObject) {
 	return html;
 }
 
-
+// Gets the User's items from the database
 function getUsersItems (event) {
 	event.preventDefault();
 	var ajaxResponse = $.ajax({
@@ -143,6 +84,7 @@ function getUsersItems (event) {
 	});
 }
 
+// Saves the item to the current user
 function addItemToUser (event) {
 	event.preventDefault();
 	var id = $(this).first().parents().eq(3).attr('id');
@@ -168,6 +110,8 @@ function addItemToUser (event) {
 	});
 
 }
+
+// Deletes the item from the user and the database
 function deleteItem (event) {
 	event.preventDefault();
 	var id = $(this).first().parents().eq(3).attr('id');
@@ -187,15 +131,9 @@ function deleteItem (event) {
 	});
 }
 
-
+// Fixes the html encoding from strings
 function decodeHtml(html) {
     var txt = document.createElement("textarea");
     txt.innerHTML = html;
     return txt.value;
 }
-
-
-
-
-
-
