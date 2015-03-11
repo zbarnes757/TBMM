@@ -101,8 +101,8 @@ function createItems (productObject, productIndex) {
 	var context = {
 		id: productIndex,
 		image_source: productObject.Images[0].url_fullxfull,
-		description: productObject.description,
-		title: productObject.title,
+		description: decodeHtml(productObject.description),
+		title: decodeHtml(productObject.title),
 		price: productObject.price,
 		url: productObject.url,
 	}
@@ -188,7 +188,11 @@ function deleteItem (event) {
 }
 
 
-
+function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+}
 
 
 
