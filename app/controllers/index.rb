@@ -47,5 +47,10 @@ post '/user/items/add' do
 	item.to_json
 end
 
+delete '/user/items/delete' do
+	Item.find(params[:id]).destroy
+	status 200
+end
+
 
 

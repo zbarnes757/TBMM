@@ -5,6 +5,7 @@ $(document).ready(function() {
   $('.welcome').on('click', '.welcome-button', findProducts )
   $('.welcome').on('click', '.items-button', getUsersItems )
   $('.main-area').on('click', '.add-item', addItemToUser )
+  $('.main-area').on('click', '.remove-item', deleteItem )
 });
 
 function userSignUp (event) {
@@ -164,8 +165,26 @@ function addItemToUser (event) {
 
 	ajaxResponse.done(function (serverData) {
 		console.log('Successfully added!');
-	})
+	});
 
+}
+function deleteItem (event) {
+	event.preventDefault();
+	var id = $(this).first().parents().eq(3).attr('id');
+	var ajaxResponse = $.ajax({
+		url: '/user/items/delete',
+		type: 'delete',
+		data: {id: id},
+	});
+
+	ajaxResponse.done(function (serverData) {
+		$('#'+id).remove();
+		console.log('Successfully deleted!');
+	});
+
+	ajaxResponse.fail(function (serverData) {
+		console.log('Something went wrong...');
+	});
 }
 
 
