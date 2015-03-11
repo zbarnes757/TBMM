@@ -2,7 +2,7 @@
 $(document).ready(function() {
   // $('#sign-up-form').submit( userSignUp );
   // $('#login-form').submit( userLogin );
-  $('.welcome').on('click', '.welcome-button', findProducts )
+  $('.welcome').on('click', '.product-button', findProducts )
   $('.welcome').on('click', '.items-button', getUsersItems )
   $('.main-area').on('click', '.add-item', addItemToUser )
   $('.main-area').on('click', '.remove-item', deleteItem )
@@ -80,14 +80,14 @@ function findProducts (event) {
 		var api_key = serverData;
 		etsyURL = "https://openapi.etsy.com/v2/listings/active.js?keywords="+
 		                terms+"&limit=12&includes=Images:1&api_key="+api_key;
-		$('.main-area .col-md-6').empty();
+		$('.main-area-row').empty();
 		$.ajax({
             url: etsyURL,
             dataType: 'jsonp',
             success: function(data) {
                 if (data.ok) {
                 	$.each(data.results, function (productIndex) {
-                		$('.main-area .col-md-6').append(createItems(data.results[productIndex], productIndex));
+                		$('.main-area-row').append(createItems(data.results[productIndex], productIndex));
                 	})
                 } else {    
                   alert(data.error);
@@ -136,9 +136,9 @@ function getUsersItems (event) {
 	});
 
 	ajaxResponse.done(function (serverData) {
-		$('.main-area .col-md-6').empty();
+		$('.main-area-row').empty();
 		$.each(serverData, function (productIndex) {
-			$('.main-area .col-md-6').append(createUserItems(serverData[productIndex]));
+			$('.main-area-row').append(createUserItems(serverData[productIndex]));
 		});
 	});
 }
