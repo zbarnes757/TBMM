@@ -1,70 +1,70 @@
 
 $(document).ready(function() {
-  $('#sign-up-form').submit( userSignUp );
-  $('#login-form').submit( userLogin );
+  // $('#sign-up-form').submit( userSignUp );
+  // $('#login-form').submit( userLogin );
   $('.welcome').on('click', '.welcome-button', findProducts )
   $('.welcome').on('click', '.items-button', getUsersItems )
   $('.main-area').on('click', '.add-item', addItemToUser )
   $('.main-area').on('click', '.remove-item', deleteItem )
 });
 
-function userSignUp (event) {
-	event.preventDefault();
-	var formData = $(this).serialize();
-	var url = $(this).attr('action');
-	$('.form-control').val('');
-	var ajaxResponse = $.ajax({
-		url: url,
-		type: 'post',
-		data: formData,
-	});
+// function userSignUp (event) {
+// 	event.preventDefault();
+// 	var formData = $(this).serialize();
+// 	var url = $(this).attr('action');
+// 	$('.form-control').val('');
+// 	var ajaxResponse = $.ajax({
+// 		url: url,
+// 		type: 'post',
+// 		data: formData,
+// 	});
 
-	ajaxResponse.done(function (serverData) {
-		modifyWelcome(serverData.name);
-		setupMainArea();
-	});
+// 	ajaxResponse.done(function (serverData) {
+// 		modifyWelcome(serverData.name);
+// 		setupMainArea();
+// 	});
 
-	ajaxResponse.fail(function (serverData) {
-		alert('Womp, womp. You suck. Try again.');
-	});
-}
+// 	ajaxResponse.fail(function (serverData) {
+// 		alert('Womp, womp. You suck. Try again.');
+// 	});
+// }
 
 
-function userLogin (event) {
-	event.preventDefault();
-	var formData = $(this).serialize();
-	var url = $(this).attr('action');
-	$('.form-control').val('');
-	var ajaxResponse = $.ajax({
-		url: url,
-		type: 'post',
-		data: formData,
-	});
+// function userLogin (event) {
+// 	event.preventDefault();
+// 	var formData = $(this).serialize();
+// 	var url = $(this).attr('action');
+// 	$('.form-control').val('');
+// 	var ajaxResponse = $.ajax({
+// 		url: url,
+// 		type: 'post',
+// 		data: formData,
+// 	});
 
-	ajaxResponse.done(function (serverData) {
-		modifyWelcome(serverData.name);
-		setupMainArea();
-});
+// 	ajaxResponse.done(function (serverData) {
+// 		modifyWelcome(serverData.name);
+// 		// setupMainArea();
+// });
 
-	ajaxResponse.fail(function (serverData) {
-		alert('Womp, womp. You suck. Try again.');
-	});
-}
+// 	ajaxResponse.fail(function (serverData) {
+// 		alert('Womp, womp. You suck. Try again.');
+// 	});
+// }
 
 function modifyWelcome (name) {
 	$('.welcome-name').text(name);
 	$('.welcome h2').hide();
 }
 
-function setupMainArea () {
-	$('.main-area').empty().append("<div class='col-md-6'></div>");
-	$('.welcome').append("<button class='btn btn-info welcome-button' id='safety-razors'>Safety Razors</button>");
-	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-brushes'>Brushes</button>");
-	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-cream'>Creams</button>");
-	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-kits'>Shaving Kits</button>");
-	$('.welcome').append("<button class='btn btn-info welcome-button' id='after-shave-balm'>After Shaves</button>");
-	$('.welcome').append("<button class='btn btn-info items-button' id='usersItems'>Your Saved Items</button>");
-}
+// function setupMainArea () {
+// 	$('.main-area').empty().append("<div class='col-md-6'></div>");
+// 	$('.welcome').append("<button class='btn btn-info welcome-button' id='safety-razors'>Safety Razors</button>");
+// 	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-brushes'>Brushes</button>");
+// 	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-cream'>Creams</button>");
+// 	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-kits'>Shaving Kits</button>");
+// 	$('.welcome').append("<button class='btn btn-info welcome-button' id='after-shave-balm'>After Shaves</button>");
+// 	$('.welcome').append("<button class='btn btn-info items-button' id='usersItems'>Your Saved Items</button>");
+// }
 
 
 function findProducts (event) {

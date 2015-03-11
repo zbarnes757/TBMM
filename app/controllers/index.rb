@@ -1,27 +1,39 @@
 get '/' do
-	erb :index
+	if logged_in?
+		redirect '/main_page'
+	else
+		erb :index
+	end
 end
 
 post '/user/create' do
 	user = User.new(params)
-	content_type :json
 	if user.save!
 		session[:user_id] = user.id
-		{name: user.name}.to_json
+		redirect '/main_page'
 	else
-		status 400
+		flash[:errors] = user.errors.full_messages
+		redirect '/'
 	end
 end
 
 post '/login' do
   user = User.find_by(email: params[:email])
-		content_type :json
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
-		{name: user.name}.to_json
+		redirect '/main_page'
   else
-  	status 401
+  	flash[:errors] = "Try Again!"
+  	redirect '/'
   end
+end
+
+get '/main_page' do
+	if logged_in?
+		erb :main_page
+	else
+		redirect '/'
+	end
 end
 
 get '/logout' do
