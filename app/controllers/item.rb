@@ -6,8 +6,7 @@ end
 
 post '/user/items/add' do
 	item = current_user.items.create(params)
-	content_type :json
-	item.to_json
+	status 200
 end
 
 delete '/user/items/delete' do
