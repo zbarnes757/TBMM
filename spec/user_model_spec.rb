@@ -26,4 +26,8 @@ describe User do
      
   end
 
+  context "items" do
+    it {should have_many(:items)}
+  end
+
 end
