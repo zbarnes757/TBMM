@@ -4,6 +4,7 @@ $(document).ready(function() {
   $('#login-form').submit( userLogin );
   $('.welcome').on('click', '.welcome-button', findProducts )
   $('.welcome').on('click', '.items-button', getUsersItems )
+  $('.main-area').on('click', '.add-item', addItemToUser )
 });
 
 function userSignUp (event) {
@@ -85,9 +86,8 @@ function findProducts (event) {
             success: function(data) {
                 if (data.ok) {
                 	$.each(data.results, function (productIndex) {
-                		$('.main-area .col-md-6').append(createItems(data.results[productIndex]));
+                		$('.main-area .col-md-6').append(createItems(data.results[productIndex], productIndex));
                 	})
-                  console.log(data.results);
                 } else {    
                   alert(data.error);
                 }
@@ -96,8 +96,9 @@ function findProducts (event) {
 		  })
 }
 
-function createItems (productObject) {
+function createItems (productObject, productIndex) {
 	var context = {
+		id: productIndex,
 		image_source: productObject.Images[0].url_fullxfull,
 		description: productObject.description,
 		title: productObject.title,
@@ -120,6 +121,32 @@ function getUsersItems (event) {
 	ajaxResponse.done(function (serverData) {
 		console.log(serverData);
 	});
+}
+
+function addItemToUser (event) {
+	event.preventDefault();
+	var id = $(this).first().parents().eq(3).attr('id');
+	var imageURL = $('#'+id+' img').attr('src');
+	var title = $('#'+id+' h3').text();
+	var description = $('#'+id+' .description').text();
+	var price = $('#'+id+' .price').text();
+	var productURL = $('#'+id+' .product-url').attr('href');
+	var ajaxResponse = $.ajax({
+		url: '/user/items/add',
+		type: 'post',
+		data: {
+			image_url: imageURL,
+			description: description,
+			title: title,
+			price: price,
+			product_url: productURL,
+		},
+	});
+
+	ajaxResponse.done(function (serverData) {
+		console.log(serverData);
+	})
+
 }
 
 

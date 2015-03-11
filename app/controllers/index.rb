@@ -41,5 +41,11 @@ get '/user/items' do
 	items.to_json
 end
 
+post '/user/items/add' do
+	item = current_user.items.create(params)
+	content_type :json
+	item.to_json
+end
+
 
 
