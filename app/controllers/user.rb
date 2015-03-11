@@ -15,7 +15,7 @@ post '/login' do
     session[:user_id] = user.id
 		redirect '/main_page'
   else
-  	flash[:errors] = "Try Again!"
+  	flash[:errors] = ["Try Again!"]
   	redirect '/'
   end
 end

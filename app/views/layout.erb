@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/css/application.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/handlebars-v3.0.0.js"></script>
+  <script src="/js/bootstrap.js"></script>
   <script src="/js/application.js"></script>
 
   <title>The Beard Maketh the Man</title>
@@ -14,7 +15,7 @@
   <div class="container-fluid">
     <% if flash[:errors] != nil %>
   		<% flash[:errors].each do |error| %>
-  			<%= error %>
+  			<%= erb :_errors, locals: {error: error} %>
   		<% end %>
   	<% end %>
     <%= yield %>
