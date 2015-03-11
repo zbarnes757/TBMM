@@ -61,7 +61,7 @@ function setupMainArea () {
 	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-brushes'>Brushes</button>");
 	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-cream'>Creams</button>");
 	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-kits'>Shaving Kits</button>");
-	$('.welcome').append("<button class='btn btn-info welcome-button' id='after-shave'>After Shaves</button>");
+	$('.welcome').append("<button class='btn btn-info welcome-button' id='after-shave-balm'>After Shaves</button>");
 	$('.welcome').append("<button class='btn btn-info items-button' id='usersItems'>Your Saved Items</button>");
 }
 
@@ -136,7 +136,6 @@ function getUsersItems (event) {
 
 	ajaxResponse.done(function (serverData) {
 		$('.main-area .col-md-6').empty();
-		console.log(serverData)
 		$.each(serverData, function (productIndex) {
 			$('.main-area .col-md-6').append(createUserItems(serverData[productIndex]));
 		});
