@@ -15,6 +15,7 @@ gem 'httparty'
 
 gem 'rack-flash3'
 gem 'bcrypt'
+gem 'pry'
 
 group :test do
   gem 'shoulda-matchers'
