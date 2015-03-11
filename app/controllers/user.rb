@@ -1,6 +1,6 @@
 post '/user/create' do
 	user = User.new(params)
-	if user.save!
+	if user.save
 		session[:user_id] = user.id
 		redirect '/main_page'
 	else
