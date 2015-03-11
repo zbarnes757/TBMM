@@ -18,6 +18,7 @@ require 'logger'
 require 'sinatra'
 require 'rack-flash'
 use Rack::Flash
+require 'pry'
 
 if development?
 	require 'dotenv'
