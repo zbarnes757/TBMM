@@ -35,5 +35,11 @@ get '/etsy_key' do
 	etsy_key.to_json
 end
 
+get '/user/items' do
+	items = current_user.items.map { |item| item.attributes  }
+	content_type :json
+	items.to_json
+end
+
 
 

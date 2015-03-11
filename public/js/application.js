@@ -2,7 +2,8 @@
 $(document).ready(function() {
   $('#sign-up-form').submit( userSignUp );
   $('#login-form').submit( userLogin );
-  $('.welcome').on('click', '.btn', findProducts )
+  $('.welcome').on('click', '.welcome-button', findProducts )
+  $('.welcome').on('click', '.items-button', getUsersItems )
 });
 
 function userSignUp (event) {
@@ -60,6 +61,7 @@ function setupMainArea () {
 	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-cream'>Creams</button>");
 	$('.welcome').append("<button class='btn btn-info welcome-button' id='shaving-kits'>Shaving Kits</button>");
 	$('.welcome').append("<button class='btn btn-info welcome-button' id='after-shave'>After Shaves</button>");
+	$('.welcome').append("<button class='btn btn-info items-button' id='usersItems'>Your Saved Items</button>");
 }
 
 
@@ -106,6 +108,18 @@ function createItems (productObject) {
 	var template = Handlebars.compile(source);
 	var html    = template(context);
 	return html;
+}
+
+function getUsersItems (event) {
+	event.preventDefault();
+	var ajaxResponse = $.ajax({
+		url: '/user/items',
+		type: 'get',
+	});
+
+	ajaxResponse.done(function (serverData) {
+		console.log(serverData);
+	});
 }
 
 
