@@ -34,5 +34,19 @@
       </div>
     </div>
   </script>
+  <script id="users-product-template" type="text/x-handlebars-template" >
+    <div class="col-xs-6 clearfix" id={{id}}>
+      <div class="thumbnail">
+        <img src={{image_source}} alt={{title}}>
+        <div class="caption">
+          <h3>{{title}}</h3>
+          <p class="description">{{description}}</p>
+          <p>$<span class="price">{{price}}</span></p>
+          <p><a href={{url}} class="btn btn-default btn-primary product-url" target="_blank">See on Etsy</a></p>
+          <p><a href="/user/items/add" class="btn btn-default btn-primary remove-item">Remove from Your Items</a></p>
+        </div>
+      </div>
+    </div>
+  </script>
 </body>
 </html>

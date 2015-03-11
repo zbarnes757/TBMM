@@ -111,6 +111,22 @@ function createItems (productObject, productIndex) {
 	return html;
 }
 
+function createUserItems (productObject) {
+	var context = {
+		id: productObject.id,
+		image_source: productObject.image_url,
+		description: productObject.description,
+		title: productObject.title,
+		price: productObject.price,
+		url: productObject.product_url,
+	}
+	var source   = $("#users-product-template").html();
+	var template = Handlebars.compile(source);
+	var html    = template(context);
+	return html;
+}
+
+
 function getUsersItems (event) {
 	event.preventDefault();
 	var ajaxResponse = $.ajax({
@@ -119,7 +135,11 @@ function getUsersItems (event) {
 	});
 
 	ajaxResponse.done(function (serverData) {
-		console.log(serverData);
+		$('.main-area .col-md-6').empty();
+		console.log(serverData)
+		$.each(serverData, function (productIndex) {
+			$('.main-area .col-md-6').append(createUserItems(serverData[productIndex]));
+		});
 	});
 }
 
@@ -144,7 +164,7 @@ function addItemToUser (event) {
 	});
 
 	ajaxResponse.done(function (serverData) {
-		console.log(serverData);
+		console.log('Successfully added!');
 	})
 
 }
