@@ -9,7 +9,7 @@ $(document).ready(function() {
 // Returns Items from Etsy and adds them to the main area
 function findProducts (event) {
 	event.preventDefault();
-	var terms = $(this).attr('id');
+	var terms = $(this).attr('data-search');
 	var ajaxResponse = $.ajax({
 		url: "/etsy_key",
 		type: 'get',
@@ -123,7 +123,7 @@ function deleteItem (event) {
 
 	ajaxResponse.done(function (serverData) {
 		$('#'+id).remove();
-		console.log('Successfully deleted!');
+		alert('Successfully deleted!');
 	});
 
 	ajaxResponse.fail(function (serverData) {

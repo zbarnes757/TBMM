@@ -1,12 +1,12 @@
 <div class="welcome">
 	<h1 class="welcome-headers">Welcome, <%= current_user.name %></h1>
 	<h4>Click a button to see products.</h4>
-	<button class='btn btn-info product-button welcome-button' id='safety-razors'>Safety Razors</button>
-	<button class='btn btn-info product-button welcome-button' id='shaving-brushes'>Brushes</button>
-	<button class='btn btn-info product-button welcome-button' id='shaving-cream'>Creams</button>
-	<button class='btn btn-info product-button welcome-button' id='shaving-kits'>Shaving Kits</button>
-	<button class='btn btn-info product-button welcome-button' id='after-shave-balm'>After Shaves</button>
-	<button class='btn btn-info items-button welcome-button' id='usersItems'>Your Saved Items</button>
+	<button class='btn btn-info product-button welcome-button' data-search='safety-razors'>Safety Razors</button>
+	<button class='btn btn-info product-button welcome-button' data-search='shaving-brushes'>Brushes</button>
+	<button class='btn btn-info product-button welcome-button' data-search='shaving-cream'>Creams</button>
+	<button class='btn btn-info product-button welcome-button' data-search='shaving-kits'>Shaving Kits</button>
+	<button class='btn btn-info product-button welcome-button' data-search='after-shave-balm'>After Shaves</button>
+	<button class='btn btn-info items-button welcome-button' >Your Saved Items</button>
 	<a class='btn btn-info logout welcome-button' href='/logout'>Logout</a>
 </div>
 
