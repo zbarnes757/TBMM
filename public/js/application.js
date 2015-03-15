@@ -9,7 +9,7 @@ $(document).ready(function() {
 // Returns Items from Etsy and adds them to the main area
 function findProducts (event) {
 	event.preventDefault();
-	var terms = $(this).attr('data-search');
+	var terms = $(this).attr('id');
 	var ajaxResponse = $.ajax({
 		url: "/etsy_key",
 		type: 'get',
