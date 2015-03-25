@@ -1,9 +1,9 @@
 
 $(document).ready(function() {
-  $('.welcome').on('click', '.product-button', findProducts )
-  $('.welcome').on('click', '.items-button', getUsersItems )
-  $('.main-area').on('click', '.add-item', addItemToUser )
-  $('.main-area').on('click', '.remove-item', deleteItem )
+  $('.welcome').on('click', '.product-button', findProducts );
+  $('.welcome').on('click', '.items-button', getUsersItems );
+  $('.main-area').on('click', '.add-item', addItemToUser );
+  $('.main-area').on('click', '.remove-item', deleteItem );
 });
 
 // Returns Items from Etsy and adds them to the main area
@@ -94,7 +94,7 @@ function addItemToUser (event) {
 	var price = $('#'+id+' .price').text();
 	var productURL = $('#'+id+' .product-url').attr('href');
 	var ajaxResponse = $.ajax({
-		url: '/user/items/add',
+		url: '/user/items',
 		type: 'post',
 		data: {
 			image_url: imageURL,
@@ -116,7 +116,7 @@ function deleteItem (event) {
 	event.preventDefault();
 	var id = $(this).first().parents().eq(3).attr('id');
 	var ajaxResponse = $.ajax({
-		url: '/user/items/delete',
+		url: '/user/items',
 		type: 'delete',
 		data: {id: id},
 	});

@@ -4,12 +4,12 @@ get '/user/items' do
 	items.to_json
 end
 
-post '/user/items/add' do
+post '/user/items' do
 	item = current_user.items.create(params)
 	status 200
 end
 
-delete '/user/items/delete' do
+delete '/user/items' do
 	Item.find(params[:id]).destroy
 	status 200
 end
